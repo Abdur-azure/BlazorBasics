@@ -1,0 +1,49 @@
+﻿<h1>Component Lifecycle</h1>
+<p>Check the browser console for details...</p>
+
+@code {
+    public override async Task SetParametersAsync(ParameterView parameters)
+
+    {
+        Console.WriteLine("SetParametersAsync - Begin");
+        await base.SetParametersAsync(parameters);
+        Console.WriteLine("SetParametersAsync - End");
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Console.WriteLine("OnInitialized");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("OnInitializedAsync - Begin");
+        await Task.Delay(300);
+        Console.WriteLine("OnInitializedAsync - End");
+    } 
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        Console.WriteLine("OnParameterSet");
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await OnParametersSetAsync();
+        Console.WriteLine("OnParametersSetAsync");
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        Console.WriteLine($"OnAfterRender (First render: {firstRender})");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await OnAfterRenderAsync(firstRender);
+        Console.WriteLine($"OnAfterRenderAsync (First render: {firstRender})");
+    }
+}

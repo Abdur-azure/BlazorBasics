@@ -1,5 +1,5 @@
 ﻿@page "/"
-@inject HttpClient Http
+@*@inject HttpClient Http*@
 
 <PageTitle>Blazing Trails</PageTitle>
 
@@ -17,7 +17,26 @@ else
     </div>
 }
 
+@*@foreach (var word in _greeting)
+{
+    <p>@word</p>
+}
+
 @code {
+ 
+    List<string> _greeting = new List<string>();
+ 
+    protected override async Task OnInitializedAsync()
+    {
+        _greeting.Add("Welcome"); 
+        await Task.Delay(1000);
+        _greeting.Add("to");
+        await Task.Delay(1000);
+        _greeting.Add("Blazor in Action");
+    }
+}*@
+
+@*@code {
     private IEnumerable<Trail>? _trails;
 
     protected override async Task OnInitializedAsync()
@@ -32,4 +51,4 @@ else
             Console.WriteLine($"There was a problem loading trail data: { ex.Message} ");
         }
     }
-}
+}*@
